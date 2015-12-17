@@ -6,79 +6,81 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
-/**
- * Created by Administrator on 2015-12-16.
- */
-public class MyOrientationListener implements SensorEventListener {
+public class MyOrientationListener implements SensorEventListener
+{
+	private SensorManager mSensorManager;
+	private Context mContext;
+	private Sensor mSensor;
+	private float lastX;
 
+	public MyOrientationListener(Context context)
+	{
+		this.mContext = context;
+	}
 
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
-    private Context mContext;
+	@SuppressWarnings("deprecation")
+	public void start()
+	{
+		mSensorManager = (SensorManager) mContext
+				.getSystemService(Context.SENSOR_SERVICE);
+		if (mSensorManager != null)
+		{
+			// ??÷??????
+			mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+		}
 
+		if (mSensor != null)
+		{
+			mSensorManager.registerListener(this, mSensor,
+					SensorManager.SENSOR_DELAY_UI);
+		}
+	}
 
-    private float xLast;
+	public void stop()
+	{
+		mSensorManager.unregisterListener(this);
+	}
 
-    public void start(){
-        mSensorManager= (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+	@Override
+	public void onAccuracyChanged(Sensor arg0, int arg1)
+	{
+		// TODO Auto-generated method stub
 
-        //获得方向传感器
-        if(mSensorManager!=null){
-            mSensor=mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-        }
+	}
 
+	@SuppressWarnings(
+	{ "deprecation" })
+	@Override
+	public void onSensorChanged(SensorEvent event)
+	{
+		if (event.sensor.getType() == Sensor.TYPE_ORIENTATION)
+		{
+			float x = event.values[SensorManager.DATA_X];
 
-        if(mSensor!=null){
-            mSensorManager.registerListener(this,mSensor,SensorManager.SENSOR_DELAY_UI);
-        }
-    }
+			if (Math.abs(x - lastX) > 1.0)
+			{
+				if (mOnOrientationListener != null)
+				{
+					mOnOrientationListener.onOrientationChanged(x);
+				}
+			}
 
-    public void stop(){
-            mSensorManager.unregisterListener(this);
+			lastX = x;
 
-    }
+		}
+	}
 
-    public MyOrientationListener(Context context){
-        this.mContext=context;
-    }
+	private OnOrientationListener mOnOrientationListener;
 
+	public void setOnOrientationListener(
+			OnOrientationListener mOnOrientationListener)
+	{
+		this.mOnOrientationListener = mOnOrientationListener;
+	}
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        if(event.sensor.getType()==Sensor.TYPE_ORIENTATION){
+	public interface OnOrientationListener
+	{
+		void onOrientationChanged(float x);
+	}
 
-            float x=event.values[SensorManager.DATA_X];
-            if(Math.abs(x-xLast)>1.0){
-                if(mOnorientationListener!=null){
-                    mOnorientationListener.onOrientationChanged(x);
-
-                }
-
-            }
-        }
-
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    public OnOrientationListener getmOnorientationListener() {
-        return mOnorientationListener;
-    }
-
-    public void setmOnorientationListener(OnOrientationListener mOnorientationListener) {
-        this.mOnorientationListener = mOnorientationListener;
-    }
-
-    private OnOrientationListener mOnorientationListener;
-
-    public void setmSensorManager(SensorManager mSensorManager) {
-        this.mSensorManager = mSensorManager;
-    }
-
-    public interface  OnOrientationListener{
-        void onOrientationChanged(float x);
-    }
 }
