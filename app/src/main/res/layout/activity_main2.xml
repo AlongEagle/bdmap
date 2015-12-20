@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.xiaoshaying.bdmap.Main2Activity"
+    android:background="#ffffff">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="地图导航"
+        android:id="@+id/button"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        style="@style/Animation.AppCompat.DropDownUp"
+        android:background="#25c028" />
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/button3"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignStart="@+id/button3"
+        android:layout_marginTop="58dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="养老保险查询"
+        android:id="@+id/button2"
+        android:layout_below="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        style="@style/Base.Animation.AppCompat.Dialog"
+        android:background="#29b4a9" />
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="账户登录"
+        android:id="@+id/button3"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true"
+        android:background="#c50a17" />
+</RelativeLayout>

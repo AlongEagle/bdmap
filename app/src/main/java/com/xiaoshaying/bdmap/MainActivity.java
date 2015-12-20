@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -62,6 +63,12 @@ public class MainActivity extends Activity
     private BitmapDescriptor mMarker;
     private RelativeLayout mMarkerLy;
 
+
+
+    //音乐播放器
+    private MediaPlayer mediaPlayer;
+    private int musicTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -80,6 +87,11 @@ public class MainActivity extends Activity
         // 初始化定位
         initLocation();
         initMarker();
+
+
+        //播放背景音乐
+        playMusic();
+
 
 
         //去掉百度地图logo
@@ -149,6 +161,15 @@ infoWindow=new InfoWindow(tv,ll,1);
         });
     }
 
+    private void playMusic() {
+
+        mediaPlayer=MediaPlayer.create(this,R.raw.jaychou);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
+
+    }
+
     private void getoutLoge() {
 
         View child = mMapView.getChildAt(1);
@@ -196,8 +217,9 @@ infoWindow=new InfoWindow(tv,ll,1);
     {
         mMapView = (MapView) findViewById(R.id.id_bmapView);
         mBaiduMap = mMapView.getMap();
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(15.0f);
+        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(10.0f);
         mBaiduMap.setMapStatus(msu);
+        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
     }
 
     @Override
@@ -205,7 +227,11 @@ infoWindow=new InfoWindow(tv,ll,1);
     {
         super.onResume();
         // 在activity执行onResume时执行mMapView. onResume ()，实现地图生命周期管理
+
+        mediaPlayer.start();
+        mediaPlayer.seekTo(musicTime);
         mMapView.onResume();
+
     }
 
     @Override
@@ -224,6 +250,8 @@ infoWindow=new InfoWindow(tv,ll,1);
     protected void onPause()
     {
         super.onPause();
+        musicTime=mediaPlayer.getCurrentPosition();
+        mediaPlayer.pause();
         // 在activity执行onDestroy时执行mMapView.onDestroy()，实现地图生命周期管理
         mMapView.onPause();
     }
@@ -251,14 +279,18 @@ infoWindow=new InfoWindow(tv,ll,1);
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
+
     {
+
         getMenuInflater().inflate(R.menu.main, menu);
+
 
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
+
 
     {
 
@@ -277,6 +309,7 @@ infoWindow=new InfoWindow(tv,ll,1);
                 {
                     mBaiduMap.setTrafficEnabled(false);
                     item.setTitle("实时交通(off)");
+
                 } else
                 {
                     mBaiduMap.setTrafficEnabled(true);
