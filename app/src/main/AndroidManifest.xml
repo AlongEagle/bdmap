@@ -70,7 +70,11 @@
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".WebCheck"></activity>
+        <activity android:name=".WebCheck" />
+        <activity
+            android:name=".Nati"
+            android:label="@string/title_activity_nati"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

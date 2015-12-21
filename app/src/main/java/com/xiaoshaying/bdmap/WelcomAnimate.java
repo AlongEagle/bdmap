@@ -58,7 +58,7 @@ public class WelcomAnimate extends AppCompatActivity {
     }
 
     private void skip() {
-        startActivity(new Intent(this, Main2Activity.class));
+        startActivity(new Intent(this, Nati.class));
         finish();
     }
 }
