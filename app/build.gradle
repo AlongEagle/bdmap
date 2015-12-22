@@ -30,4 +30,7 @@ dependencies {
     compile files('libs/baidumapapi_util_v3_6_1.jar')
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.android.support:design:23.1.0'
+    compile files('libs/GetuiExt-2.0.3.jar')
+    compile files('libs/GetuiSDK2.7.0.0.jar')
+    compile files('libs/json_simple-1.1.jar')
 }

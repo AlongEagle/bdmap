@@ -24,12 +24,5 @@
         app:menu="@menu/activity_nati_drawer"
         android:background="#7eb978"
         android:theme="@style/AlertDialog.AppCompat.Light" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:paddingTop="90dp"
-        android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="30dp"
-        android:text="测试环境 欢迎吐槽"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -8,6 +8,8 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 
+import com.igexin.sdk.PushManager;
+
 public class WelcomAnimate extends AppCompatActivity {
 
 
@@ -18,6 +20,9 @@ public class WelcomAnimate extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //个推的消息类
+        PushManager.getInstance().initialize(this.getApplicationContext());
         setContentView(R.layout.activity_welcom_animate);
         welcomeImg = (ImageView) this.findViewById(R.id.welcome_img);
         AlphaAnimation anima = new AlphaAnimation(0.3f, 1.0f);
