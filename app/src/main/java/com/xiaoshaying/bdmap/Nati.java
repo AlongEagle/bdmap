@@ -103,7 +103,7 @@ public class Nati extends AppCompatActivity
 
         } else if (id == R.id.nav_manage) {
 
-            Toast.makeText(this,"敬请期待功能完善",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this, FAQ_activity.class));
         } else if (id == R.id.nav_share) {
             Toast.makeText(this,"敬请期待功能完善",Toast.LENGTH_LONG).show();
 
