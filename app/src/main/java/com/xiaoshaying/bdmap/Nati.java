@@ -19,12 +19,14 @@ import android.widget.Toast;
 public class Nati extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nati);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +94,14 @@ public class Nati extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_login) {
             startActivity(new Intent(this, LoginActivity.class));
 
-        } else if (id == R.id.nav_gallery) {
+        }else if (id == R.id.nav_voice) {
+
+            startActivity(new Intent(this, VoiceAssist.class));// Handle the camera action
+        }
+        else if (id == R.id.nav_gallery) {
 
             startActivity(new Intent(this, MainActivity.class));// Handle the camera action
         } else if (id == R.id.nav_slideshow) {

@@ -6,9 +6,13 @@
     <group android:checkableBehavior="single"
         >
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_login"
             android:icon="@drawable/ic_menu_camera"
             android:title="账号登陆" />
+        <item
+            android:id="@+id/nav_voice"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="语音问答" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"

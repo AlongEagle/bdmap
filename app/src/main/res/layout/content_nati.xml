@@ -12,4 +12,11 @@
     tools:context="com.xiaoshaying.bdmap.Nati"
     tools:showIn="@layout/app_bar_nati">
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/sc1"/>
 </RelativeLayout>
