@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:theme="@style/AlertDialog.AppCompat.Light"
+    >
 
     <include
         layout="@layout/app_bar_nati"
@@ -22,7 +24,7 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_nati"
         app:menu="@menu/activity_nati_drawer"
-        android:background="#7eb978"
+        android:background="#1f9498"
         android:theme="@style/AlertDialog.AppCompat.Light" />
 
 </android.support.v4.widget.DrawerLayout>

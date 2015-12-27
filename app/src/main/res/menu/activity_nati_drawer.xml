@@ -12,7 +12,7 @@
         <item
             android:id="@+id/nav_voice"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="语音问答" />
+            android:title="智能语音" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
@@ -24,6 +24,11 @@
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
+            android:title="居保简介" />
+
+        <item
+            android:id="@+id/nav_website"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="居保简介" />
     </group>
 

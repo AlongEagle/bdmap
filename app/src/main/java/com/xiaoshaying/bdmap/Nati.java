@@ -95,7 +95,7 @@ public class Nati extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_login) {
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, SMSCheck.class));
 
         }else if (id == R.id.nav_voice) {
 
@@ -110,7 +110,12 @@ public class Nati extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
             startActivity(new Intent(this, FAQ_activity.class));
-        } else if (id == R.id.nav_share) {
+
+        }else if (id == R.id.nav_website) {
+            startActivity(new Intent(this,WebSite.class));
+
+        }
+        else if (id == R.id.nav_share) {
             Toast.makeText(this,"敬请期待功能完善",Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_send) {

@@ -26,7 +26,7 @@ public class WelcomAnimate extends AppCompatActivity {
         setContentView(R.layout.activity_welcom_animate);
         welcomeImg = (ImageView) this.findViewById(R.id.welcome_img);
         AlphaAnimation anima = new AlphaAnimation(0.3f, 1.0f);
-        anima.setDuration(4000);// 设置动画显示时间
+        anima.setDuration(3000);// 设置动画显示时间
         welcomeImg.startAnimation(anima);
         anima.setAnimationListener(new AnimationImpl());
 

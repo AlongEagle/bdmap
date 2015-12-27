@@ -10,6 +10,7 @@
         android:layout_height="fill_parent"
         android:clickable="true" />
 
+
     <RelativeLayout
         android:id="@+id/id_maker_ly"
         android:layout_width="match_parent"
