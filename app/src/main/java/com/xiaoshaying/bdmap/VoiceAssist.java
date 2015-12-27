@@ -116,6 +116,8 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
                 case 1:
                     ttsManager.startTTS((String) msg.obj, Constant.XunFei);
                     tv.setText((String) msg.obj);
+//                    tv.setTextColor(Color.BLUE);
+                    tv.setTextSize(35);
 //				Toast.makeText(MainActivity.this, (String)msg.obj, Toast.LENGTH_LONG).show();
                     break;
 
@@ -167,6 +169,9 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
         try {
 
             System.out.println("-----------------------------1111----------------------------------------");
+            tv.setText(arg0);
+//            tv.setTextColor(Color.GREEN);
+            tv.setTextSize(35);
             mTuringApiManager.requestTuringAPI(arg0);
         } catch (Exception e) {
             // TODO Auto-generated catch block
