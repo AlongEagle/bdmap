@@ -38,7 +38,7 @@ public class WelcomAnimate extends AppCompatActivity {
 
         @Override
         public void onAnimationStart(Animation animation) {
-            welcomeImg.setBackgroundResource(R.drawable.dz_logo);
+            welcomeImg.setBackgroundResource(R.drawable.dz_logo3);
 
 
 //            mediaPlayer= MediaPlayer.create(WelcomAnimate.this, R.raw.jaychou);

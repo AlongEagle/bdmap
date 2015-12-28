@@ -3,6 +3,8 @@ package com.xiaoshaying.bdmap;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,19 +29,42 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
     private TTSManager ttsManager;
     private TuringApiManager mTuringApiManager;
 
+
+    private boolean ifRecoding=true;
+
     private TextView tv;
 
+    private ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_voice_assist);
         tv=(TextView)findViewById(R.id.tv);
+        imageView= (ImageView) findViewById(R.id.imageView4);
 
         initMscAndTTS();
 
         initTulingApiManager();
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv.setText("请您说出问题.....");
+//                    tv.setTextColor(Color.BLUE);
+                tv.setTextSize(40);
+                imageView.setImageResource(R.drawable.voice2);
+                voiceRecognizeManager.startRecognize(Constant.XunFei);
+
+
+            }
+        });
 
         ttsManager.startTTS("东至县居保中心欢迎您，请说出您的问题！", Constant.XunFei);
+    }
+
+    void showThinking(){
+        tv.setText("亲，你说的都是啥啊？让我思考下...");
+//                    tv.setTextColor(Color.BLUE);
+        tv.setTextSize(38);
     }
 
     /**
@@ -63,7 +88,7 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
             @Override
             public void onComplete() {
                 // 获取userid成功，此时，才支持主动请求的功能
-                Toast.makeText(VoiceAssist.this, "获取userid成功...", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(VoiceAssist.this, "获取userid成功...", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -73,6 +98,18 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
 
                     @Override
                     public void onSuceess(String arg0) {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                tv.setText("亲，你说的都是啥啊？让我思考下...");
+//                    tv.setTextColor(Color.BLUE);
+                                tv.setTextSize(38);
+                            }
+                        });
+
+//                        showThinking();
+
 //						Toast.makeText(MainActivity.this, "请求成功 正在转化...", Toast.LENGTH_LONG).show();
 
 
@@ -96,6 +133,9 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
                 });
     }
 
+
+
+
     /**
      * 初始化识别和tts
      *
@@ -114,10 +154,18 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
 
             switch (msg.what) {
                 case 1:
+                    ifRecoding=false;
+
+
+                    voiceRecognizeManager.cancleReconize();
+
+
+//                    voiceRecognizeManager.stopRecognize();
                     ttsManager.startTTS((String) msg.obj, Constant.XunFei);
                     tv.setText((String) msg.obj);
 //                    tv.setTextColor(Color.BLUE);
-                    tv.setTextSize(35);
+                    tv.setTextSize(16);
+
 //				Toast.makeText(MainActivity.this, (String)msg.obj, Toast.LENGTH_LONG).show();
                     break;
 
@@ -138,8 +186,16 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
 
     @Override
     public void onSpeechFinish() {
-        Toast.makeText(this, "说完了", Toast.LENGTH_SHORT).show();
+//        ifRecoding=true;
+
+        imageView.setImageResource(R.drawable.voice2);
+//        Toast.makeText(this, "大白回答完毕", Toast.LENGTH_SHORT).show();
+        tv.setText("请您说出问题.....");
+//                    tv.setTextColor(Color.BLUE);
+        tv.setTextSize(40);
         voiceRecognizeManager.startRecognize(Constant.XunFei);
+
+
     }
 
     @Override
@@ -152,7 +208,8 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
 
     @Override
     public void onSpeechStart() {
-        Toast.makeText(this, "正在聆听你", Toast.LENGTH_SHORT).show();
+        imageView.setImageResource(R.drawable.voice_answer);
+//        Toast.makeText(this, "大白正在回答", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -163,15 +220,15 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
     @Override
     public void onRecognizeResult(String arg0) {
         // 识别到话语后，将其发向服务器，进行语义分析，并回答
-        Toast.makeText(this, "发送服务器了，正在处理请稍后...", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, arg0, Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "发送服务器了，正在处理请稍后...", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, arg0, Toast.LENGTH_LONG).show();
 
         try {
 
             System.out.println("-----------------------------1111----------------------------------------");
             tv.setText(arg0);
 //            tv.setTextColor(Color.GREEN);
-            tv.setTextSize(35);
+            tv.setTextSize(16);
             mTuringApiManager.requestTuringAPI(arg0);
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -198,5 +255,10 @@ public class VoiceAssist extends Activity implements VoiceRecognizeListener,
         // 仅针对调用讯飞时有效
 //		Toast.makeText(this, "VolumeChange", Toast.LENGTH_LONG).show();
     }
+
+
+
+
+
 }
 
